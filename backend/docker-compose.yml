@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:13.4
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: CHANGE-ME
+    volumes:
+      - database_folder:/var/lib/postgresql/data
+    networks:
+      - sssl_reg_network
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_ENV=production
+      - DATABASE_URL= postgres://postgres:CHANGE-ME@db
+    restart: always
+    ports:
+      - "3321:3000"
+    networks:
+      - sssl_reg_network
+    depends_on:
+      - db
+networks:
+  sssl_reg_network:
+volumes:
+  database_folder:
+    external:
+      name: sssl_reg_database

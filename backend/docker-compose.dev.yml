@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:13.4
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: CHANGE-ME
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_folder:/var/lib/postgresql/data
+volumes:
+  database_folder:
+    external:
+      name: sssl_reg_database
