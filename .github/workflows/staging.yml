@@ -9,7 +9,7 @@ on:
 
 jobs:
   heroku-staging-deploy:
-    name: Deploy API
+    name: Deploy Staging backend
     runs-on: ubuntu-latest
 
     steps:
@@ -22,13 +22,13 @@ jobs:
         run: heroku container:login
 
       - name: Build and push
-        working-directory: api
+        working-directory: backend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:push web -a ${{ secrets.HEROKU_APP_NAME }}
 
       - name: Release
-        working-directory: api
+        working-directory: backend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
