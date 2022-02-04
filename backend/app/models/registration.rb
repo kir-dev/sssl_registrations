@@ -17,4 +17,6 @@
 #
 class Registration < ApplicationRecord
   has_one :schedule
+
+  validates :eula, presence: true ,acceptance: true
 end
