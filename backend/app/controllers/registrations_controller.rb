@@ -1,0 +1,87 @@
+# frozen_string_literal: true
+
+class RegistrationsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[create], if: :api_request?
+  skip_before_action :require_login, only: %i[create], if: :api_request?
+  before_action :set_registration, only: %i[show edit update destroy]
+
+  # GET /registrations or /registrations.json
+  def index
+    @registrations = Registration.all
+  end
+
+  # GET /registrations/1 or /registrations/1.json
+  def show; end
+
+  # GET /registrations/new
+  def new
+    @registration = Registration.new
+  end
+
+  # GET /registrations/1/edit
+  def edit; end
+
+  # POST /registrations or /registrations.json
+  def create
+    @registration = Registration.new(registration_params)
+    @registration.build_schedule(schedule_params)
+    puts registration_params
+    puts schedule_params
+    respond_to do |format|
+      if @registration.save
+        format.html { redirect_to registration_url(@registration), notice: 'Registration was successfully created.' }
+        format.json do
+          render status: :created,
+                 json: @registration.to_json(include: { schedule: { only: %i[monday tuesday wednesday thursday] } })
+        end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /registrations/1 or /registrations/1.json
+  def update
+    respond_to do |format|
+      if @registration.update(registration_params)
+        format.html { redirect_to registration_url(@registration), notice: 'Registration was successfully updated.' }
+        format.json { render :show, status: :ok, location: @registration }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /registrations/1 or /registrations/1.json
+  def destroy
+    @registration.destroy
+
+    respond_to do |format|
+      format.html { redirect_to registrations_url, notice: 'Registration was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_registration
+    @registration = Registration.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def registration_params
+    params.require(:registration).permit(:name, :nickname, :tel, :year, :university, :group, :room_number, :other,
+                                         :eula)
+  end
+
+  def schedule_params
+    params.require(:schedule).permit(%i[monday tuesday wednesday thursday])
+  end
+
+  def api_request?
+    request.format.json?
+  end
+end

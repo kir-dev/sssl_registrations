@@ -1,0 +1,39 @@
+# == Schema Information
+#
+# Table name: registrations
+#
+#  id          :bigint           not null, primary key
+#  eula        :boolean
+#  group       :string
+#  name        :string
+#  nickname    :string
+#  other       :string
+#  room_number :string
+#  tel         :string
+#  university  :string
+#  year        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  name: MyString
+  nickname: MyString
+  tel: MyString
+  year: 1
+  university: MyString
+  group: MyString
+  room_number: MyString
+  other: MyString
+  eula: false
+
+two:
+  name: MyString
+  nickname: MyString
+  tel: MyString
+  year: 1
+  university: MyString
+  group: MyString
+  room_number: MyString
+  other: MyString
+  eula: false

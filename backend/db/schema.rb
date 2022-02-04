@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_04_124728) do
+ActiveRecord::Schema.define(version: 2022_02_04_135909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "registrations", force: :cascade do |t|
+    t.string "name"
+    t.string "nickname"
+    t.string "tel"
+    t.integer "year"
+    t.string "university"
+    t.string "group"
+    t.string "room_number"
+    t.string "other"
+    t.boolean "eula"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "registration_id", null: false
+    t.boolean "monday"
+    t.boolean "tuesday"
+    t.boolean "wednesday"
+    t.boolean "thursday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["registration_id"], name: "index_schedules_on_registration_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -25,4 +50,5 @@ ActiveRecord::Schema.define(version: 2022_02_04_124728) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "schedules", "registrations"
 end

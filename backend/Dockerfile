@@ -1,22 +1,36 @@
 FROM ruby:3.0.2-alpine3.14
 
 ENV RAILS_ENV production
-
+ENV NODE_ENV production
 RUN apk update && \
   apk add tzdata postgresql-dev && \
   apk add postgresql-client && \
   apk add build-base && \
   apk add --no-cache bash
+  
+RUN apk -U upgrade \
+  && apk add --no-cache \
+    nodejs \
+    npm \
+    yarn
 
 WORKDIR /sssl_reg
 
 COPY Gemfile .
 COPY Gemfile.lock .
+COPY package.json .
+COPY yarn.lock .
 
 RUN gem install bundler
 RUN bundle install --retry 3
 
+RUN yarn install --check-files
+RUN rails assets:precompile
+
 COPY . .
+
+
+
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
