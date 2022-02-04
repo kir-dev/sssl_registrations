@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get 'logout', to: 'session#destroy', as: :logout
 
 
-  root 'session#index'
+  root 'registrations#index'
 end

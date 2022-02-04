@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  skip_before_action :require_login, only: [:create]
   before_action :set_registration, only: %i[ show edit update destroy ]
 
   # GET /registrations or /registrations.json
@@ -58,13 +59,14 @@ class RegistrationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_registration
-      @registration = Registration.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def registration_params
-      params.require(:registration).permit(:name, :nickname, :tel, :year, :university, :group, :room_number, :other, :eula)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_registration
+    @registration = Registration.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def registration_params
+    params.require(:registration).permit(:name, :nickname, :tel, :year, :university, :group, :room_number, :other, :eula, schedule:{})
+  end
 end
