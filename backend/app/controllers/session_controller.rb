@@ -25,6 +25,6 @@ class SessionController < ApplicationController
   def superuser?(id)
     ENV.fetch('SUPERUSERS').split.include? id
   end
-  
+
 
 end
