@@ -28,6 +28,14 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+
+# A generalized Rack framework for multiple-provider authentication. (https://github.com/omniauth/omniauth)
+gem 'omniauth'
+# Provides CSRF protection on OmniAuth request endpoint on Rails application. (https://github.com/cookpad/omniauth-rails_csrf_protection)
+gem 'omniauth-rails_csrf_protection'
+# An Auth.sch strategy for OmniAuth 1.x (https://github.com/kiskoza/omniauth-authsch)
+gem 'omniauth-authsch'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
