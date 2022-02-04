@@ -13,13 +13,17 @@ services:
   web:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    env_file:
+      - .env
     environment:
+      - CLIENT_ID
+      - CLIENT_SECRET
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=production
       - DATABASE_URL= postgres://postgres:CHANGE-ME@db
     restart: always
     ports:
-      - "3321:3000"
+      - "3000:3000"
     networks:
       - sssl_reg_network
     depends_on:
