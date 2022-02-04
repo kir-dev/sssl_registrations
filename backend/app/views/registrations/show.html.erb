@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registration.name %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @registration.nickname %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @registration.tel %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @registration.year %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @registration.university %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @registration.group %>
+</p>
+
+<p>
+  <strong>Room number:</strong>
+  <%= @registration.room_number %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @registration.other %>
+</p>
+
+<p>
+  <strong>Eula:</strong>
+  <%= @registration.eula %>
+</p>
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>
