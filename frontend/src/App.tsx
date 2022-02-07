@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Footer } from './components/@layout/Footer'
+import { MainPage } from './components/@pages/MainPage'
+import { FormPage } from './components/@pages/FormPage'
+import { SuccessPage } from './components/@pages/SuccessPage'
+import ScrollToTop from './components/@elements/ScrollToTop'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route path="siker" element={<SuccessPage />} />
+          <Route path="jelentkezes" element={<FormPage />} />
+          <Route index element={<MainPage />} />
+        </Route>
+      </Routes>
+      <ScrollToTop />
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
