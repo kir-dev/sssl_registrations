@@ -4,15 +4,15 @@ ENV RAILS_ENV production
 ENV NODE_ENV production
 ENV CLIENT_ID test
 ENV CLIENT_SECRET test
+ENV BUNDLE_WITHOUT development:test
 
 RUN apk update && \
   apk add tzdata postgresql-dev && \
   apk add postgresql-client && \
   apk add build-base && \
-  apk add --no-cache bash
-  
-RUN apk -U upgrade \
-  && apk add --no-cache \
+  apk add --no-cache bash && \
+  apk -U upgrade  && \  
+  apk add --no-cache \
     nodejs \
     npm \
     yarn
@@ -21,15 +21,14 @@ WORKDIR /sssl_reg
 
 COPY Gemfile .
 COPY Gemfile.lock .
-COPY package.json .
-COPY yarn.lock .
+
 
 RUN gem install bundler
 RUN bundle install --retry 3
 
-RUN yarn install --check-files
-
 COPY . .
+
+RUN yarn install --check-files --production
 
 
 
