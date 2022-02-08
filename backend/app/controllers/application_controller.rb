@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     if !logged_in?
       redirect_to login_url
     elsif !logged_in_as_accepted?
-      redirect_to '/403.html'
+      redirect_to forbidden_path
     end
   end
 
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     if !logged_in?
       redirect_to login_url
     elsif !logged_in_as_admin?
-      redirect_to '/403.html'
+      redirect_to forbidden_path
     end
   end
 
