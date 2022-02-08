@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: registrations
@@ -21,8 +23,19 @@ require 'csv'
 class Registration < ApplicationRecord
   has_one :schedule, dependent: :destroy
   accepts_nested_attributes_for :schedule, update_only: true
-  validates :eula, presence: true, acceptance: true
 
+  UNIVERSITY_OPTIONS = %w[mernokinfo villamosmernok uzemmernok kulsos].freeze
+  GROUP_OPTIONS      = %w[fekete feher sarga piros kek nincs].freeze
+
+  validates :eula, presence: true, acceptance: true
+  validates :name, presence: true
+  validates :nickname, presence: true
+  validates :email, presence: true
+  validates :tel, presence: true
+  validates :university, inclusion: { in: UNIVERSITY_OPTIONS }
+  validates :year, numericality: { only_integer: true }
+  validates :group, inclusion: { in: GROUP_OPTIONS }
+  
   def self.to_csv
     registrations    = Registration.all
     reg_headers      = Registration.headers
