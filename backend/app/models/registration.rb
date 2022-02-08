@@ -35,17 +35,19 @@ class Registration < ApplicationRecord
   validates :university, inclusion: { in: UNIVERSITY_OPTIONS }
   validates :year, numericality: { only_integer: true }
   validates :group, inclusion: { in: GROUP_OPTIONS }
-  
+
   def self.to_csv
     registrations    = Registration.all
     reg_headers      = Registration.headers
     schedule_headers = Schedule.headers
 
     CSV.generate(headers: true) do |document|
-      document << reg_headers + schedule_headers
+      document << (reg_headers + schedule_headers).map { |h| I18n.t(h, default: h) }
 
       registrations.each do |reg|
-        document << reg_headers.map { |h| reg.send(h) } + schedule_headers.map { |sh| reg.schedule.send(sh) }
+        row = reg_headers.map { |h| translate_or_default(h, reg.send(h)) }
+        row += schedule_headers.map { |sh| translate_or_default(sh, reg.schedule.send(sh)) }
+        document << row
       end
     end
   end
@@ -53,4 +55,13 @@ class Registration < ApplicationRecord
   def self.headers
     Registration.columns.map(&:name) - %w[id updated_at]
   end
+
+  def self.translate_or_default(key, str)
+    if %w[university group].include? key
+      I18n.t(str, default: str)
+    else
+      str
+    end
+  end
+
 end
