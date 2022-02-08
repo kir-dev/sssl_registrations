@@ -11,77 +11,80 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :nickname %>
-    <%= form.text_field :nickname %>
+  <div class="mb-3">
+    <%= form.label :nickname, class: "form-label" %>
+    <%= form.text_field :nickname, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :tel %>
-    <%= form.text_field :tel %>
+  <div class="mb-3">
+    <%= form.label :tel, class: "form-label" %>
+    <%= form.text_field :tel, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
+  <div class="mb-3">
+    <%= form.label :year, class: "form-label" %>
+    <%= form.number_field :year, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :university %>
-    <%= form.text_field :university %>
+  <div class="mb-3">
+    <%= form.label :university, class: "form-label" %>
+    <%= form.text_field :university, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :group %>
-    <%= form.text_field :group %>
+  <div class="mb-3">
+    <%= form.label :group, class: "form-label" %>
+    <%= form.text_field :group, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :room_number %>
-    <%= form.text_field :room_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :other %>
-    <%= form.text_field :other %>
+  <div class="mb-3">
+    <%= form.label :room_number, class: "form-label" %>
+    <%= form.text_field :room_number, class: "form-control" %>
   </div>
 
 
-  <%= form.fields_for :schedule, include_id: false do |schedule_form| %>
-    <div class="field">
-      <%= schedule_form.label :monday %>
-      <%= schedule_form.check_box :monday %>
-    </div>
 
-    <div class="field">
-      <%= schedule_form.label :tuesday %>
-      <%= schedule_form.check_box :tuesday %>
-    </div>
+  <div class="form-group">
+    <%= form.fields_for :schedule, include_id: false do |schedule_form| %>
+      <div class="form-check">
+        <%= schedule_form.label :monday, class: "form-check-label" %>
+        <%= schedule_form.check_box :monday, class: "form-check-input" %>
+      </div>
 
-    <div class="field">
-      <%= schedule_form.label :wednesday %>
-      <%= schedule_form.check_box :wednesday %>
-    </div>
+      <div class="form-check">
+        <%= schedule_form.label :tuesday, class: "form-check-label" %>
+        <%= schedule_form.check_box :tuesday, class: "form-check-input" %>
+      </div>
 
-    <div class="field">
-      <%= schedule_form.label :thursday %>
-      <%= schedule_form.check_box :thursday %>
-    </div>
-  <% end %>
+      <div class="form-check">
+        <%= schedule_form.label :wednesday, class: "form-check-label" %>
+        <%= schedule_form.check_box :wednesday, class: "form-check-input" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :eula %>
-    <%= form.check_box :eula %>
+      <div class="form-check">
+        <%= schedule_form.label :thursday, class: "form-check-label" %>
+        <%= schedule_form.check_box :thursday, class: "form-check-input" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :other, class: "form-label" %>
+    <%= form.text_area :other, class: "form-control" %>
+  </div>
+  
+  <div class="form-check">
+    <%= form.label :eula, class: "form-check-label" %>
+    <%= form.check_box :eula, class: "form-check-input" %>
   </div>
 
   <div class="actions">
