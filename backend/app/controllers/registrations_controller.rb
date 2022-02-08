@@ -5,9 +5,15 @@ class RegistrationsController < ApplicationController
   skip_before_action :require_login, only: %i[create], if: :api_request?
   before_action :set_registration, only: %i[show edit update destroy]
 
-  # GET /registrations or /registrations.json
+  # GET /registrations or /registrations.json or /registrations.csv
   def index
     @registrations = Registration.all
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Registration.to_csv, filename: "reg_export-#{Time.zone.today}.csv"
+      end
+    end
   end
 
   # GET /registrations/1 or /registrations/1.json
@@ -32,7 +38,7 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to registration_url(@registration), notice: 'Registration was successfully created.' }
         format.json do
           render status: :created,
-                 json: @registration.to_json(include: { schedule: { only: %i[monday tuesday wednesday thursday] } })
+                 json:   @registration.to_json(include: { schedule: { only: %i[monday tuesday wednesday thursday] } })
         end
       else
         format.html { render :new, status: :unprocessable_entity }
