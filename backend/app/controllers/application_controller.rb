@@ -28,11 +28,19 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in_as_admin?
 
   def require_login
-    redirect_to login_path, notice: 'Ehhez nincs jogosultságod' unless logged_in_as_accepted?
+    if !logged_in?
+      redirect_to login_url
+    elsif !logged_in_as_accepted?
+      redirect_to '/403.html'
+    end
   end
 
   def require_admin
-    redirect_to login_path, notice: 'Ehhez nincs jogosultságod' unless logged_in_as_admin?
+    if !logged_in?
+      redirect_to login_url
+    elsif !logged_in_as_admin?
+      redirect_to '/403.html'
+    end
   end
 
 end

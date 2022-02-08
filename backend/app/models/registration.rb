@@ -17,7 +17,7 @@
 #  updated_at  :datetime         not null
 #
 class Registration < ApplicationRecord
-  has_one :schedule
+  has_one :schedule, dependent: :destroy
 
   validates :eula, presence: true ,acceptance: true
 end

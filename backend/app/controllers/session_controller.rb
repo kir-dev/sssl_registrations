@@ -18,7 +18,7 @@ class SessionController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url
+    redirect_to login_url
   end
 
   private
