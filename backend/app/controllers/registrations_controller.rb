@@ -79,8 +79,8 @@ class RegistrationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def registration_params
-    params.require(:registration).permit(:name, :nickname, :tel, :year, :university, :group, :room_number, :other,
-                                         :eula)
+    params.require(:registration).permit(:name, :nickname, :email, :tel, :year, :university, :group, :room_number,
+                                         :other, :eula)
   end
 
   def schedule_params
