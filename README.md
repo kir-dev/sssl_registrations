@@ -15,6 +15,7 @@ Here is an example interface:
 
 export interface RegistrationFormDTO{
     name:string; // név
+    email:string; //mail
     nickname:string; // becenév
     tel: string; // telefon
     year: number; // évfolyam
@@ -42,6 +43,7 @@ const api = 'https://sssl-staging.herokuapp.com/api'
 const form_response: RegistrationFormDTO = {
     "name": "Teszt Elek",
     "nickname": "Telek",
+    "email": "asd@asd.com",
     "tel": "063332525",
     "year":3,
     "university": "BME",

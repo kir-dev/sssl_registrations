@@ -1,0 +1,33 @@
+hu:
+  activerecord:
+    models:
+      registration: Bejegyzés  #g
+      schedule: Menetrend  #g
+      user: Felhasználó  #g
+
+    attributes:
+      registration:
+        email: Email  #g
+        eula: Eula  #g
+        group: Csoport  #g
+        name: Név  #g
+        nickname: Becenév  #g
+        other: Egyéb  #g
+        room_number: Szoba szám  #g
+        schedule: Ráérések  #g
+        tel: Telefon  #g
+        university: Kar  #g
+        year: Évfolyam  #g
+
+      schedule:
+        monday: hétfő  #g
+        registration: :activerecord.models.registration  #g
+        thursday: csütörtök  #g
+        tuesday: kedd  #g
+        wednesday: szerda  #g
+
+      user:
+        accepted: Elfogadott  #g
+        admin: Admin  #g
+        email: Email  #g
+        name: Név  #g

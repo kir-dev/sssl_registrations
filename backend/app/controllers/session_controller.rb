@@ -5,6 +5,8 @@ class SessionController < ApplicationController
 
   def index; end
 
+  def forbidden;end
+
   def callback
     raw_user = request.env['omniauth.auth']['extra']['raw_info']
     @user = User.find_or_create_by(internal_id: raw_user['internal_id']) do |u|
@@ -18,7 +20,7 @@ class SessionController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url
+    redirect_to login_url
   end
 
   private

@@ -3,6 +3,7 @@
 # Table name: registrations
 #
 #  id          :bigint           not null, primary key
+#  email       :string
 #  eula        :boolean
 #  group       :string
 #  name        :string

@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  name: "Name"
+  nickname: "NickName"
+  groups: "Groups"
+  Show: "Show"
+  Back: "Back"
+  Are you sure?: "Are you sure"
+  Destroy: "Destroy"
+  Edit: "Edit"
+  Only edit on your own responsibility: "Only edit on your own responsibility"

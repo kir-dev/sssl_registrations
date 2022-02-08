@@ -1,49 +1,54 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t :name %>:</strong>
   <%= @registration.name %>
 </p>
 
 <p>
-  <strong>Nickname:</strong>
+  <strong><%= t :nickname%>:</strong>
   <%= @registration.nickname %>
 </p>
 
 <p>
-  <strong>Tel:</strong>
+  <strong><%= t :tel %>:</strong>
   <%= @registration.tel %>
 </p>
 
 <p>
-  <strong>Year:</strong>
+  <strong><%= t :year %>:</strong>
   <%= @registration.year %>
 </p>
 
 <p>
-  <strong>University:</strong>
-  <%= @registration.university %>
+  <strong><%= t :university %>:</strong>
+  <%= t(@registration.university, default: @registration.university) %>
 </p>
 
 <p>
-  <strong>Group:</strong>
-  <%= @registration.group %>
+  <strong><%= t :group %>:</strong>
+  <%= t(@registration.group, default: @registration.group) %>
 </p>
 
 <p>
-  <strong>Room number:</strong>
+  <strong><%= t :room_number %>:</strong>
   <%= @registration.room_number %>
 </p>
 
 <p>
-  <strong>Other:</strong>
+  <strong><%= t :schedule %>:</strong>
+  <%= @registration.schedule&.accepted_days&.map{|d| t(d, default: d)}&.join ", " %>
+</p>
+
+<p>
+  <strong><%= t :other %>:</strong>
   <%= @registration.other %>
 </p>
 
 <p>
-  <strong>Eula:</strong>
+  <strong><%= t :eula %>:</strong>
   <%= @registration.eula %>
 </p>
 
-<%= link_to 'Edit', edit_registration_path(@registration) %> |
-<%= link_to 'Back', registrations_path %>
+<%= link_to t('Edit'), edit_registration_path(@registration) %> |
+<%= link_to t('Back'), registrations_path %>
