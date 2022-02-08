@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     current_user&.admin? || current_user&.accepted
   end
 
-  helper_method :logged_in_as_admin?
+  helper_method :logged_in_as_accepted?
 
   def require_login
     if !logged_in?

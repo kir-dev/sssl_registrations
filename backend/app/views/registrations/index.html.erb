@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Registrations</h1>
+<h1>Regisztrációk</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th scope="col">Name</th>
       <th>Nickname</th>
       <th>Email</th>
       <th>Tel</th>
@@ -44,4 +44,5 @@
 
 <br>
 
-<%= link_to 'New Registration', new_registration_path %>
+<%= link_to 'Exportálás', registrations_path(format: :csv) , class: 'btn btn-primary text-white' %>
+<%= link_to 'Manuális regisztráció felvétel', new_registration_path, class: 'btn btn-secondary text-white' %>
