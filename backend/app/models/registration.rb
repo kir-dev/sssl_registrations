@@ -20,8 +20,9 @@ require 'csv'
 
 class Registration < ApplicationRecord
   has_one :schedule, dependent: :destroy
-
+  accepts_nested_attributes_for :schedule, update_only: true
   validates :eula, presence: true, acceptance: true
+
 
   def self.to_csv
     registrations = Registration.all
@@ -47,6 +48,6 @@ class Registration < ApplicationRecord
   private
 
   def self.headers
-    Registration.columns.map(&:name) - %w[id created_at updated_at] + ['schedule']
+    Registration.columns.map(&:name) - %w[id updated_at] + ['schedule']
   end
 end

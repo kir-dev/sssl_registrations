@@ -22,6 +22,7 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @registration = Registration.new
+    @registration.build_schedule
   end
 
   # GET /registrations/1/edit
@@ -30,9 +31,6 @@ class RegistrationsController < ApplicationController
   # POST /registrations or /registrations.json
   def create
     @registration = Registration.new(registration_params)
-    @registration.build_schedule(schedule_params)
-    puts registration_params
-    puts schedule_params
     respond_to do |format|
       if @registration.save
         format.html { redirect_to registration_url(@registration), notice: 'Registration was successfully created.' }
@@ -79,12 +77,9 @@ class RegistrationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def registration_params
+    params[:registration][:schedule_attributes] = params[:schedule] if params[:registration][:schedule_attributes].nil?
     params.require(:registration).permit(:name, :nickname, :email, :tel, :year, :university, :group, :room_number,
-                                         :other, :eula)
-  end
-
-  def schedule_params
-    params.require(:schedule).permit(%i[monday tuesday wednesday thursday])
+                                         :other, :eula, schedule_attributes: [%i[monday tuesday wednesday thursday]])
   end
 
   def api_request?

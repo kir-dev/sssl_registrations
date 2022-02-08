@@ -36,6 +36,11 @@
 </p>
 
 <p>
+  <strong>Schedule:</strong>
+  <%= @registration.schedule&.accepted_days&.join ", " %>
+</p>
+
+<p>
   <strong>Other:</strong>
   <%= @registration.other %>
 </p>

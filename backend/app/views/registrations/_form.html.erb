@@ -56,6 +56,29 @@
     <%= form.text_field :other %>
   </div>
 
+
+  <%= form.fields_for :schedule, include_id: false do |schedule_form| %>
+    <div class="field">
+      <%= schedule_form.label :monday %>
+      <%= schedule_form.check_box :monday %>
+    </div>
+
+    <div class="field">
+      <%= schedule_form.label :tuesday %>
+      <%= schedule_form.check_box :tuesday %>
+    </div>
+
+    <div class="field">
+      <%= schedule_form.label :wednesday %>
+      <%= schedule_form.check_box :wednesday %>
+    </div>
+
+    <div class="field">
+      <%= schedule_form.label :thursday %>
+      <%= schedule_form.check_box :thursday %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :eula %>
     <%= form.check_box :eula %>
