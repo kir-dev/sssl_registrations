@@ -13,6 +13,7 @@
       <th>University</th>
       <th>Group</th>
       <th>Room number</th>
+      <th>Schedule</th>
       <th>Other</th>
       <th>Eula</th>
       <th colspan="3"></th>
@@ -30,6 +31,7 @@
         <td><%= registration.university %></td>
         <td><%= registration.group %></td>
         <td><%= registration.room_number %></td>
+        <td><%= registration.schedule.accepted_days.join ", " %></td>
         <td><%= registration.other %></td>
         <td><%= registration.eula %></td>
         <td><%= link_to 'Show', registration %></td>

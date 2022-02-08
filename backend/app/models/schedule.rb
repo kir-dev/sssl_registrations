@@ -3,10 +3,10 @@
 # Table name: schedules
 #
 #  id              :bigint           not null, primary key
-#  monday          :boolean
-#  thursday        :boolean
-#  tuesday         :boolean
-#  wednesday       :boolean
+#  monday          :boolean          default(FALSE)
+#  thursday        :boolean          default(FALSE)
+#  tuesday         :boolean          default(FALSE)
+#  wednesday       :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  registration_id :bigint           not null
@@ -21,4 +21,9 @@
 #
 class Schedule < ApplicationRecord
   belongs_to :registration
+
+  def accepted_days
+    attributes.select {|key,value| value == true}.map{|key,value| key.to_s}
+  end
 end
+

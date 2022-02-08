@@ -19,5 +19,5 @@
 class Registration < ApplicationRecord
   has_one :schedule, dependent: :destroy
 
-  validates :eula, presence: true ,acceptance: true
+  validates :eula, presence: true, acceptance: true
 end
