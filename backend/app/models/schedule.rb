@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: schedules
@@ -23,7 +25,10 @@ class Schedule < ApplicationRecord
   belongs_to :registration
 
   def accepted_days
-    attributes.select {|key,value| value == true}.map{|key,value| key.to_s}
+    attributes.select { |_, value| value == true }.map { |key, _| key.to_s }
+  end
+
+  def self.headers
+    Schedule.columns.map(&:name) - %w[id updated_at created_at registration_id]
   end
 end
-

@@ -23,31 +23,21 @@ class Registration < ApplicationRecord
   accepts_nested_attributes_for :schedule, update_only: true
   validates :eula, presence: true, acceptance: true
 
-
   def self.to_csv
-    registrations = Registration.all
-    headers       = Registration.headers
+    registrations    = Registration.all
+    reg_headers      = Registration.headers
+    schedule_headers = Schedule.headers
 
     CSV.generate(headers: true) do |document|
-      document << headers
+      document << reg_headers + schedule_headers
 
       registrations.each do |reg|
-        document << headers.map do |h|
-          val = reg.send(h)
-          if val.methods.include? :accepted_days
-            val.accepted_days.join ', '
-          else
-            val
-          end
-        end
-
+        document << reg_headers.map { |h| reg.send(h) } + schedule_headers.map { |sh| reg.schedule.send(sh) }
       end
     end
   end
 
-  private
-
   def self.headers
-    Registration.columns.map(&:name) - %w[id updated_at] + ['schedule']
+    Registration.columns.map(&:name) - %w[id updated_at]
   end
 end
