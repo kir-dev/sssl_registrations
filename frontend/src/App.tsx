@@ -17,7 +17,6 @@ function App() {
         </Route>
       </Routes>
       <ScrollToTop />
-      <Footer />
     </BrowserRouter>
   )
 }
