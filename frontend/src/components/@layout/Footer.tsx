@@ -7,7 +7,7 @@ import customTheme from '../../theme/customTheme'
 export const Footer: React.FC = () => (
   <Box>
     <Container>
-      <Wrap pt={20} justify="space-between" align="center">
+      <Wrap pt={24} justify="space-between" align="center">
         <FooterWrapItem>
           <FooterBigImage src="/img/sssl.svg" filter={useColorModeValue('', 'invert(100%)')} />
           <HStack align="center">

@@ -1,15 +1,13 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, useBreakpointValue } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
   fonts: {
-    heading: 'Limelight',
-    body: 'Raleway'
+    heading: 'Limelight'
   },
   styles: {
     global: {
       body: {
-        backgroundColor: 'red.700',
-        background: 'url(/img/left.svg) left top repeat-y, url(/img/right.svg) right top repeat-y'
+        backgroundColor: 'red.700'
       },
       h1: {
         fontWeight: 400,
