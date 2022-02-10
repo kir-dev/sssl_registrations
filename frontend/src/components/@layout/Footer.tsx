@@ -5,9 +5,9 @@ import { Container } from './Container'
 import customTheme from '../../theme/customTheme'
 
 export const Footer: React.FC = () => (
-  <Box borderTopWidth={1} mt={20} borderStyle="solid" borderColor={useColorModeValue('gray.200', 'gray.700')}>
+  <Box>
     <Container>
-      <Wrap justify="space-between" align="center">
+      <Wrap pt={20} justify="space-between" align="center">
         <FooterWrapItem>
           <FooterBigImage src="/img/sssl.svg" filter={useColorModeValue('', 'invert(100%)')} />
           <HStack align="center">
