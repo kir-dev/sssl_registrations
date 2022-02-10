@@ -1,20 +1,28 @@
 import { extendTheme } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
+  fonts: {
+    heading: 'Limelight',
+    body: 'Raleway'
+  },
   styles: {
     global: {
       body: {
-        backgroundColor: 'gray.50'
+        backgroundColor: 'red.700',
+        background: 'url(/img/left.svg) left top repeat-y, url(/img/right.svg) right top repeat-y'
       },
       h1: {
+        fontWeight: 400,
         textAlign: 'center',
         mt: 20
       },
       h2: {
+        fontWeight: 400,
         color: 'theme.600',
         mt: 20
       },
       h3: {
+        fontWeight: 400,
         color: 'theme.700',
         mt: 14
       }
@@ -22,15 +30,16 @@ const customTheme = extendTheme({
   },
   colors: {
     theme: {
-      100: '#d0dfe7',
-      200: '#a2bfcf',
-      300: '#73a0b8',
-      400: '#4580a0',
-      500: '#166088',
-      600: '#124d6d',
-      700: '#0d3a52',
-      800: '#092636',
-      900: '#04131b'
+      50: '#fee2e2',
+      100: '#fecaca',
+      200: '#fca5a5',
+      300: '#f87171',
+      400: '#ef4444',
+      500: '#dc2626',
+      600: '#b91c1c',
+      700: '#991b1b',
+      800: '#7f1d1d',
+      900: '#2f0d0d'
     },
     kirDev: '#F15A29'
   }

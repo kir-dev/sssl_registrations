@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page } from '../@layout/Page'
-import { Button, Heading, VStack } from '@chakra-ui/react'
+import { Button, Heading, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { Section } from '../@elements/Section'
 import { Paragraph } from '../@elements/Paragraph'
 import { LinkButton } from '../@elements/LinkButton'
@@ -10,14 +10,14 @@ import { TestimonialCard } from '../@elements/TestimonialCard'
 export const MainPage: React.FC = () => {
   return (
     <Page>
-      <Heading as="h1" size="3xl">
+      <Heading as="h1" size={useBreakpointValue({ base: '2xl', sm: '3xl' })}>
         Üdvözlünk a{' '}
-        <Heading as="span" color="theme.500" size="3xl">
+        <Heading as="span" color="theme.500" size={useBreakpointValue({ base: '2xl', sm: '3xl' })}>
           Seniorképzés
         </Heading>{' '}
         portálon
       </Heading>
-      <Paragraph fontSize={25} color="gray.500" textAlign="center" mt={20}>
+      <Paragraph fontSize={25} color="gray.600" textAlign="center" mt={20}>
         Ismerd meg a képzést, olvass tapasztalatokat és jelentkezz!
       </Paragraph>
       <VStack justifyContent="center" mt={20} alignItems="center">
