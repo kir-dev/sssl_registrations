@@ -2580,13 +2580,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/raleway@npm:^4.5.2":
-  version: 4.5.2
-  resolution: "@fontsource/raleway@npm:4.5.2"
-  checksum: b532260ffd88e2d4dbbc00a3c2d4bd7071089de34e45ac959ba391d3ce51c3f25423a583b1f7434c3f69c650f252056fbcb4659308c42b14aeb8cb2c68faa56c
-  languageName: node
-  linkType: hard
-
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
   resolution: "@gar/promisify@npm:1.1.2"
@@ -7011,7 +7004,6 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@fontsource/limelight": ^4.5.2
-    "@fontsource/raleway": ^4.5.2
     "@types/node": ^16.7.13
     "@types/react": ^17.0.20
     "@types/react-dom": ^17.0.9

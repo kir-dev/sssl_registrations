@@ -2,8 +2,7 @@ import { extendTheme, useBreakpointValue } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
   fonts: {
-    heading: 'Limelight',
-    body: 'Raleway'
+    heading: 'Limelight'
   },
   styles: {
     global: {
