@@ -140,7 +140,7 @@ export const FormPage: React.FC = () => {
             <FormLabel htmlFor="tel">Telefonszám</FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none" children={<PhoneIcon color="gray.300" />} />
-              <Input {...register('tel', { required: true, pattern: /\+?\d{10,11}/ })} placeholder="+36 12 345 6789" />
+              <Input {...register('tel', { required: true, pattern: /\+?\d{10,11}/ })} placeholder="+36123456789" />
             </InputGroup>
             {errors.tel && <FormErrorMessage>{errors.tel.message}</FormErrorMessage>}
           </FormControl>
@@ -207,7 +207,7 @@ export const FormPage: React.FC = () => {
             {errors.other && <FormErrorMessage>{errors.other.message}</FormErrorMessage>}
           </FormControl>
           <FormControl isInvalid={!!errors.eula}>
-            <Checkbox {...register('eula', { required: false })} colorScheme="theme">
+            <Checkbox {...register('eula', { required: true })} colorScheme="theme">
               Elfogadom a fent leírtakat, adataim helyesek.
             </Checkbox>
             {errors.eula && <FormErrorMessage>{errors.eula.message}</FormErrorMessage>}
