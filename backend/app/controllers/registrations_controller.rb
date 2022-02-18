@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class RegistrationsController < ApplicationController
-  before_action :set_open, only: :index
+  before_action :set_open, only: %i[index new create]
   skip_before_action :verify_authenticity_token, only: %i[create], if: :api_request?
   skip_before_action :require_login, only: %i[create], if: :api_request?
   before_action :set_registration, only: %i[show edit update destroy]
+  before_action :require_registration_open, only: %i[new create]
 
   # GET /registrations or /registrations.json or /registrations.csv
   def index
@@ -85,5 +86,14 @@ class RegistrationsController < ApplicationController
 
   def api_request?
     request.format.json?
+  end
+
+  def require_registration_open
+    unless JSON.parse(@open.value)
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Nincs regisztrációs időszak' }
+        format.json { render json: { status: 'Nincs regisztrációs időszak' }, status: :unprocessable_entity }
+      end
+    end
   end
 end
