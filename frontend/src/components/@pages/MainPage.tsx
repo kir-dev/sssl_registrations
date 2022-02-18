@@ -1,13 +1,15 @@
 import React from 'react'
 import { Page } from '../@layout/Page'
-import { Button, Heading, useBreakpointValue, VStack } from '@chakra-ui/react'
+import { Alert, AlertIcon, Button, Heading, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { Section } from '../@elements/Section'
 import { Paragraph } from '../@elements/Paragraph'
 import { LinkButton } from '../@elements/LinkButton'
 import { Testimonials } from '../../content/Testimonials'
 import { TestimonialCard } from '../@elements/TestimonialCard'
+import { useAvailability } from '../../utils/useAvailability'
 
 export const MainPage: React.FC = () => {
+  const { available, loading, error } = useAvailability()
   return (
     <Page>
       <Heading as="h1" size={useBreakpointValue({ base: '2xl', sm: '3xl' })}>
@@ -18,10 +20,22 @@ export const MainPage: React.FC = () => {
         portálon
       </Heading>
       <Paragraph fontSize={25} color="gray.600" textAlign="center" mt={20}>
-        Ismerd meg a képzést, olvass tapasztalatokat és jelentkezz!
+        Ismerd meg a képzést, olvass tapasztalatokat{available && ' és jelentkezz'}!
       </Paragraph>
+      {error && (
+        <Alert status="error" mt={5} borderRadius="md">
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
       <VStack justifyContent="center" mt={20} alignItems="center">
-        <ApplicationButton />
+        <ApplicationButton show={available} loading={loading} />
+        {!available && !loading && !error && (
+          <Alert status="error" mt={5} borderRadius="md">
+            <AlertIcon />
+            Jelenleg nincs jelentkezés.
+          </Alert>
+        )}
         <Button as="a" href="#tapasztalatok" colorScheme="theme" size="lg" variant="ghost">
           Tapasztalatok
         </Button>
@@ -39,10 +53,10 @@ export const MainPage: React.FC = () => {
       </Section>
       <Section title="Mit tudunk akkor mi nyújtani?">
         <Paragraph>
-          Na, ezzel a kérdéssel kapcsolatban viszont már egészen más a helyzet! Emberekkel való foglalkozást, az egyén szintjétől kezdve
-          akár több száz fős társaságokig. Rengeteg különböző szituációban ismerkedhetsz más egyetemistákkal, akikkel persze több fronton
-          együtt is dolgozhatsz. Az évek során olyan szociális skill-ekre tehetsz szert, amik később, az egyetemet követően bizony a
-          hasznodra válhatnak és behozhatatlan előnnyel ruháznak fel.
+          Ezzel a kérdéssel kapcsolatban viszont már egészen más a helyzet! Emberekkel való foglalkozást, az egyén szintjétől kezdve akár
+          több száz fős társaságokig. Rengeteg különböző szituációban ismerkedhetsz más egyetemistákkal, akikkel persze több fronton együtt
+          is dolgozhatsz. Az évek során olyan szociális skill-ekre tehetsz szert, amik később, az egyetemet követően bizony a hasznodra
+          válhatnak és behozhatatlan előnnyel ruháznak fel.
         </Paragraph>
       </Section>
       <Section title="Félénk vagy kiállni emberek elé beszélni?">
@@ -61,33 +75,34 @@ export const MainPage: React.FC = () => {
           jól lakni.
         </Paragraph>
       </Section>
-      <Section title="Rendezvények">
+      <Section title="Kipróbálnád milyen egy rendezvény megszervezése?">
         <Paragraph>
           Rendezvényszervezési tapasztalatokat szerezhetsz a BME egyik legnagyobb öntevékeny hallgatói szervezetében. És gondolunk itt kis
           embertömeget megmozgató rekreációs programoktól kezdve az óriásrendezvényekig, mint egy Gólyatábor, Gólyahét, Gólyabál, Egyetemi
-          Nyílt Nap. Mind a résztvevők számát, a rendezői csapat méretét és az esemény típusát tekintve széles és színes az a bizonyos
+          Nyílt Nap. A résztvevők számát, mind a rendezői csapat méretét és az esemény típusát tekintve széles és színes az a bizonyos
           paletta. Közben pedig kipróbálhatsz bármilyen feladatot.
         </Paragraph>
-      </Section>
-      <Section title="Legyél te is hős!">
         <Paragraph>
-          Például hogy milyen egy-egy rendezvény után, amikor már mindenki álomra hajtotta a fejét, láthatatlan hősként elpakolni és
+          Például hogy milyen egy-egy rendezvény után, mikor már mindenki álomra hajtotta a fejét, ekkor láthatatlan hősként elpakolni és
           kitakarítani az egész helyszínt, mintha mi sem történt volna, vagy órákkal előtte öltönyben, báli ruhában egy híres zenekarral
-          kontaktolni fellépés előtt.
+          kontaktolni a fellépésük előtt.
         </Paragraph>
       </Section>
       <Section title="Motiválj másokat!">
         <Paragraph>
-          Esetleg honlapokra cikkeket, motiváló sorokat és visszaemlékezéseket írni. Amik idővel reméled, hogy a megannyi társad közül akár
-          csak pár emberhez is ugyan, de eljutnak. S közben pedig elindítanak egy olyan folyamatot, ami egyfajta pillangóhatásként évek
-          múltán szebbé, jobbá és többé teszi az életet. És ez csak 3 “apró” példa volt a számtalan lehetőség közül.
+          Megtanulhatsz honlapokra cikkeket, motiváló sorokat és visszaemlékezéseket írni. Amik idővel reméled, hogy a megannyi társad közül
+          akár csak pár emberhez is ugyan, de eljutnak. S közben pedig elindítanak egy olyan folyamatot, ami egyfajta pillangóhatásként évek
+          múltán szebbé, jobbá és többé teszi az életet.
         </Paragraph>
       </Section>
       <Section title="Kapcsolati tőke">
         <Paragraph>
-          És persze, ami talán a legfontosabb - köztünk “teljesértékű” egyetemista lehetsz a tanulmányaid mellett. Új ismerősöket, barátokat
-          szerezhetsz, akár egy életre is, valamint olyan élményeket, amik mellett nemcsak a vizsgaidőszakok kínszenvedéseire és az
-          elfogyasztott energiaital- vagy kávétengerekre emlékszel majd vissza.
+          És persze, ami talán a legfontosabb - köztünk nem csak a tanulmányaiddal leszel elfoglalva az egyetemi féléveid alatt, hanem a
+          közösségi életbe is betekintést nyerhetsz.
+        </Paragraph>
+        <Paragraph>
+          Új ismerősöket, barátokat szerezhetsz, akár egy életre is, valamint olyan élményeket, amik mellett nemcsak a vizsgaidőszakok
+          kínszenvedéseire és az elfogyasztott energiaital- vagy kávétengerekre emlékszel majd vissza.
         </Paragraph>
       </Section>
       <Section title="Rajtad múlik!">
@@ -98,7 +113,7 @@ export const MainPage: React.FC = () => {
         </Paragraph>
       </Section>
       <VStack justifyContent="center" marginTop={10} alignItems="center">
-        <ApplicationButton />
+        <ApplicationButton show={available} loading={loading} />
       </VStack>
       <Heading as="h2" size="2xl" id="tapasztalatok" textAlign="center">
         Seniorok tapasztalatai
@@ -109,15 +124,21 @@ export const MainPage: React.FC = () => {
         ))}
       </VStack>
       <VStack justifyContent="center" alignItems="center">
-        <ApplicationButton />
+        <ApplicationButton show={available} loading={loading} />
       </VStack>
     </Page>
   )
 }
 
-const ApplicationButton: React.FC = () => {
+type ApplicationButtonProps = {
+  show: boolean
+  loading: boolean
+}
+
+const ApplicationButton: React.FC<ApplicationButtonProps> = ({ show, loading }) => {
+  if (!show && !loading) return null
   return (
-    <LinkButton href="/jelentkezes" colorScheme="theme" size="lg">
+    <LinkButton href="/jelentkezes" colorScheme="theme" size="lg" isLoading={loading}>
       Jelentkezz most!
     </LinkButton>
   )

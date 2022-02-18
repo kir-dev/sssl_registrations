@@ -4,6 +4,7 @@ import {
   Alert,
   AlertIcon,
   Button,
+  Center,
   Checkbox,
   CheckboxGroup,
   FormControl,
@@ -24,9 +25,11 @@ import {
   NumberInputField,
   NumberInputStepper,
   Select,
+  Spinner,
   Stack,
   Text,
   Textarea,
+  useColorModeValue,
   VStack
 } from '@chakra-ui/react'
 import { ArrowBackIcon, EmailIcon, PhoneIcon, WarningIcon } from '@chakra-ui/icons'
@@ -38,12 +41,14 @@ import RegistrationFormDTO from '../../types/RegistrationFormDTO'
 import RegistrationForm from '../../types/RegistrationForm'
 import axios from 'axios'
 import { Configuration } from '../../utils/configuration'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { useAvailability } from '../../utils/useAvailability'
 
 export const FormPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorResponse, setErrorResponse] = useState<string>()
   const navigate = useNavigate()
+  const { available, loading, error } = useAvailability()
   // Hook form
   const {
     register,
@@ -68,7 +73,7 @@ export const FormPage: React.FC = () => {
       })
       .catch((err) => {
         if (err.response.status === 422) {
-          setErrorResponse('A jelentkezés nem érvényes, ellenőrizd a mezőket!')
+          setErrorResponse(err.response.data.status || 'A jelentkezés nem érvényes, ellenőrizd a mezőket!')
         } else {
           setErrorResponse('Nem sikerült elküldeni az űrlapot.')
         }
@@ -77,6 +82,15 @@ export const FormPage: React.FC = () => {
         setIsLoading(false)
       })
   }
+  if (loading)
+    return (
+      <Page>
+        <Center mt={10} h="100vh">
+          <Spinner color={useColorModeValue('theme.500', 'theme.600')} size="xl" thickness="0.3rem" />
+        </Center>
+      </Page>
+    )
+  if (!available || error) return <Navigate to="/" />
   return (
     <Page>
       {/* Back button */}
