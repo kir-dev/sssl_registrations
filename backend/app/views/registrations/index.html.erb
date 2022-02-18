@@ -1,48 +1,63 @@
-<p id="notice"><%= notice %></p>
+<% can_register = JSON.parse @open.value %>
 
 <h1>Regisztrációk</h1>
 
+<h2>
+  Regisztrálás:
+  <% if can_register %>
+    <span class="badge bg-success">On</span>
+  <% else %>
+    <span class="badge bg-danger">Off</span>
+  <% end %>
+
+</h2>
+
 <table class="table">
   <thead>
-    <tr>
-      <th scope="col"><%= t(:name) %></th>
-      <th><%= t(:nickname) %></th>
-      <th>Email</th>
-      <th><%= t(:tel) %></th>
-      <th><%= t(:year) %></th>
-      <th><%= t(:university) %></th>
-      <th><%= t(:groups) %></th>
-      <th><%= t(:room_number) %></th>
-      <th><%= t(:schedule) %></th>
-      <th><%= t(:other) %></th>
-      <th><%= t(:eula) %></th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th scope="col"><%= t(:name) %></th>
+    <th><%= t(:nickname) %></th>
+    <th>Email</th>
+    <th><%= t(:tel) %></th>
+    <th><%= t(:year) %></th>
+    <th><%= t(:university) %></th>
+    <th><%= t(:groups) %></th>
+    <th><%= t(:room_number) %></th>
+    <th><%= t(:schedule) %></th>
+    <th><%= t(:other) %></th>
+    <th><%= t(:eula) %></th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @registrations.each do |registration| %>
-      <tr>
-        <td><%= registration.name %></td>
-        <td><%= registration.nickname %></td>
-        <td><%= registration.email%></td>
-        <td><%= registration.tel %></td>
-        <td><%= registration.year %></td>
-        <td><%= t(registration.university, default: registration.university) %></td>
-        <td><%= t(registration.group, default: registration.group) %></td>
-        <td><%= registration.room_number %></td>
-        <td><%= registration.schedule&.accepted_days&.map{|d| t(d, default: d)}&.join ", " %></td>
-        <td><%= registration.other %></td>
-        <td><%= registration.eula %></td>
-        <td><%= link_to t('Show'), registration %></td>
-        <td><%= link_to t('Edit'), edit_registration_path(registration),data: { confirm: t('Only edit on your own responsibility') } %></td>
-        <td><%= link_to t('Destroy'), registration, method: :delete, data: { confirm: t('Are you sure?') } %></td>
-      </tr>
-    <% end %>
+  <% @registrations.each do |registration| %>
+    <tr>
+      <td><%= registration.name %></td>
+      <td><%= registration.nickname %></td>
+      <td><%= registration.email %></td>
+      <td><%= registration.tel %></td>
+      <td><%= registration.year %></td>
+      <td><%= t(registration.university, default: registration.university) %></td>
+      <td><%= t(registration.group, default: registration.group) %></td>
+      <td><%= registration.room_number %></td>
+      <td><%= registration.schedule&.accepted_days&.map { |d| t(d, default: d) }&.join ", " %></td>
+      <td><%= registration.other %></td>
+      <td><%= registration.eula %></td>
+      <td><%= link_to t('Show'), registration %></td>
+      <td><%= link_to t('Edit'), edit_registration_path(registration), data: { confirm: t('Only edit on your own responsibility') } %></td>
+      <td><%= link_to t('Destroy'), registration, method: :delete, data: { confirm: t('Are you sure?') } %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'Exportálás', registrations_path(format: :csv) , class: 'btn btn-primary text-white' %>
+<%= link_to 'Exportálás', registrations_path(format: :csv), class: 'btn btn-primary text-white' %>
 <%= link_to 'Manuális regisztráció felvétel', new_registration_path, class: 'btn btn-secondary text-white' %>
+<% if can_register %>
+  <%= link_to 'Regisztráció kikapcsolása', close_registrations_path, class: 'btn btn-danger text-white' %>
+<% else %>
+  <%=link_to 'Regisztráció bekapcsolása', open_registrations_path, class: 'btn btn-success text-white' %>
+<% end %>

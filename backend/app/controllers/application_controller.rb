@@ -43,4 +43,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_open
+    @open = AppConfig.find_or_create_by(key: :can_register) do |conf|
+      conf.key   = :can_register
+      conf.value = false.to_s
+    end
+  end
+
 end
