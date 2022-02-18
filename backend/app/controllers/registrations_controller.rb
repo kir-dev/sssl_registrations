@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RegistrationsController < ApplicationController
+  before_action :set_open, only: :index
   skip_before_action :verify_authenticity_token, only: %i[create], if: :api_request?
   skip_before_action :require_login, only: %i[create], if: :api_request?
   before_action :set_registration, only: %i[show edit update destroy]
