@@ -23,7 +23,7 @@ services:
       - DATABASE_URL= postgres://postgres:CHANGE-ME@db
     restart: always
     ports:
-      - "3000:3000"
+      - "${OUT_PORT}:3000"
     networks:
       - sssl_reg_network
     depends_on:
