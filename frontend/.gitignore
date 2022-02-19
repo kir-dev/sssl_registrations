@@ -173,6 +173,8 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+.env
+
 ### yarn ###
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 
