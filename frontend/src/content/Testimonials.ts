@@ -18,8 +18,7 @@ export const Testimonials: TestimonialCardProps[] = [
       ezért ajánlom hogy az az ember, akinek kicsit is megfordult a fejében a jelentkezés gondolata,
       hogy jelentkezzen, mert ha picit is szimpatizálsz ezzel a körrel, akkor garantálom, hogy nem bánod meg.`
     ],
-    avatar: '/img/profile/noja.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/noja.jpg'
   },
   {
     name: 'Acsezs (Killin Attila)',
@@ -36,8 +35,7 @@ export const Testimonials: TestimonialCardProps[] = [
       `Ezek által én sokkal több mindenben ki tudtam próbálni magam, mint azt két évvel ezelőtt egyáltalán
       el tudtam volna képzelni, és nagyon hálás vagyok a múltbéli önmagamnak, hogy jelentkeztem seniornak.`
     ],
-    avatar: '/img/profile/acsezs.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/acsezs.jpg'
   },
   {
     name: 'Borsó (Kovács Levente)',
@@ -50,8 +48,7 @@ export const Testimonials: TestimonialCardProps[] = [
       tudtam szerezni. A Gólyatábor volt a legnagyobb élmény számomra seniorként, a legmeghatározóbb hét
       volt nekem 2021-ben. Remélem idén is sok jó élményben lesz részem veletek!`
     ],
-    avatar: '/img/profile/borso.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/borso.jpg'
   },
   {
     name: 'DΛNI (Bencsik Dániel)',
@@ -72,8 +69,7 @@ export const Testimonials: TestimonialCardProps[] = [
         és működj együtt más emberekkel, hogy hogyan dolgozz csapatban és hogyan légy felelősségteljes vezető. Itt az évek
         alatt olyan szociális skill-eket szedhetsz össze, amit sehol máshol.`
     ],
-    avatar: '/img/profile/dani.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/dani.jpg'
   },
   {
     name: 'Sushi (Bélteky Zsuzsi)',
@@ -88,8 +84,7 @@ export const Testimonials: TestimonialCardProps[] = [
       megtapasztalni, hogy milyen egy összetartó és jókedvű csapat tagja lenni annak mindenképpen csak ajánlani tudom
       a senior létet.`
     ],
-    avatar: '/img/profile/sushi.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/sushi.jpg'
   },
   {
     name: 'Kristóf (Somogyi Kristóf)',
@@ -98,8 +93,7 @@ export const Testimonials: TestimonialCardProps[] = [
       Rengeteg dolgot tanultam miatta, és nagyon sok jó élményt szereztem, amire életem végéig emlékezni fogok,
       bárki aki hasonló ambíciókkal rendelkezik, annak ajánlom, hogy próbálja ki. :)`
     ],
-    avatar: '/img/profile/kristof.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/kristof.jpg'
   },
   {
     name: 'Pedro (Orosz Péter)',
@@ -120,7 +114,6 @@ export const Testimonials: TestimonialCardProps[] = [
       `Ha kérdésetek lenne még a képzésről, keressetek meg nyugodtan, szívesen beszélgetek róla.
 `
     ],
-    avatar: '/img/profile/pedro.jpg',
-    role: 'Senior'
+    avatar: '/img/profile/pedro.jpg'
   }
 ]

@@ -7,6 +7,7 @@ import { LinkButton } from '../@elements/LinkButton'
 import { Testimonials } from '../../content/Testimonials'
 import { TestimonialCard } from '../@elements/TestimonialCard'
 import { useAvailability } from '../../utils/useAvailability'
+import { StyledAlert } from '../@elements/StyledAlert'
 
 export const MainPage: React.FC = () => {
   const { available, loading, error } = useAvailability()
@@ -29,12 +30,12 @@ export const MainPage: React.FC = () => {
         </Alert>
       )}
       <VStack justifyContent="center" mt={20} alignItems="center">
+        {available && <StyledAlert w="fit-content">Jelentkezési határidő: február 28. 23:59</StyledAlert>}
         <ApplicationButton show={available} loading={loading} />
         {!available && !loading && !error && (
-          <Alert status="error" mt={5} borderRadius="md">
-            <AlertIcon />
+          <StyledAlert status="error" w="fit-content">
             Jelenleg nincs jelentkezés.
-          </Alert>
+          </StyledAlert>
         )}
         <Button as="a" href="#tapasztalatok" colorScheme="theme" size="lg" variant="ghost">
           Tapasztalatok
@@ -120,7 +121,7 @@ export const MainPage: React.FC = () => {
       </Heading>
       <VStack spacing={20} my={14}>
         {Testimonials.map((t, index) => (
-          <TestimonialCard key={index} name={t.name} role={t.role} content={t.content} avatar={t.avatar} />
+          <TestimonialCard key={index} name={t.name} content={t.content} avatar={t.avatar} />
         ))}
       </VStack>
       <VStack justifyContent="center" alignItems="center">

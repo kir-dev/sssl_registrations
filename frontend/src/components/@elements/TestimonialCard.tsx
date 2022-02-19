@@ -22,12 +22,11 @@ import customTheme from '../../theme/customTheme'
 
 export type TestimonialCardProps = {
   name: string
-  role: string
   content: string[]
   avatar: string
 }
 
-export const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, content, avatar }) => {
+export const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -48,10 +47,6 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, co
           </Text>
           <Text fontWeight="bold" size="xs">
             {name}
-            <Text as="span" fontWeight="medium" color="gray.500">
-              {' '}
-              - {role}
-            </Text>
           </Text>
           <ButtonGroup mt={5}>
             <Button color="theme.500" _hover={{ textDecoration: 'underline' }} variant="unstyled" onClick={onOpen}>

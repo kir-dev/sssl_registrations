@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Page } from '../@layout/Page'
 import {
-  Alert,
-  AlertIcon,
   Button,
   Center,
   Checkbox,
@@ -43,6 +41,7 @@ import axios from 'axios'
 import { Configuration } from '../../utils/configuration'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useAvailability } from '../../utils/useAvailability'
+import { StyledAlert } from '../@elements/StyledAlert'
 
 export const FormPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -105,9 +104,13 @@ export const FormPage: React.FC = () => {
         Jelentkezés a képzésre
       </Heading>
 
+      <StyledAlert w="fit-content" mx="auto" my={10}>
+        Jelentkezési határidő: február 28. 23:59
+      </StyledAlert>
+
       {/* Form body */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing={10} maxW="xl" mx="auto" mt={10} bgColor="white" p={10} boxShadow="lg" borderRadius="lg">
+        <VStack spacing={10} maxW="xl" mx="auto" bgColor="white" p={10} boxShadow="lg" borderRadius="lg">
           {/* Requirements */}
           <Text textAlign="left" width="full" my={0} fontWeight="bold">
             A jelentkezésnek több feltétele is van, amiket vállalnod kell:
@@ -210,11 +213,10 @@ export const FormPage: React.FC = () => {
               </Stack>
             </CheckboxGroup>
           </FormControl>
-          <Alert borderRadius="md">
-            <AlertIcon />
+          <StyledAlert>
             Az alkalmakról hiányozni nem lehet. Ha már most látod, hogy valamelyik alkalmon nem fogsz tudni részt venni, jelezd felénk
             megjegyzésként.
-          </Alert>
+          </StyledAlert>
           <FormControl isInvalid={!!errors.other}>
             <FormLabel htmlFor="other">Megjegyzés (opcionális)</FormLabel>
             <Textarea {...register('other')} placeholder="Egyéb kérés, óhaj, sóhaj..." resize="vertical" />
