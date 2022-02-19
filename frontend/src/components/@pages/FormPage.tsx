@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Page } from '../@layout/Page'
 import {
-  Alert,
-  AlertIcon,
   Button,
+  Center,
   Checkbox,
   CheckboxGroup,
   FormControl,
@@ -24,9 +23,11 @@ import {
   NumberInputField,
   NumberInputStepper,
   Select,
+  Spinner,
   Stack,
   Text,
   Textarea,
+  useColorModeValue,
   VStack
 } from '@chakra-ui/react'
 import { ArrowBackIcon, EmailIcon, PhoneIcon, WarningIcon } from '@chakra-ui/icons'
@@ -38,12 +39,15 @@ import RegistrationFormDTO from '../../types/RegistrationFormDTO'
 import RegistrationForm from '../../types/RegistrationForm'
 import axios from 'axios'
 import { Configuration } from '../../utils/configuration'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { useAvailability } from '../../utils/useAvailability'
+import { StyledAlert } from '../@elements/StyledAlert'
 
 export const FormPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorResponse, setErrorResponse] = useState<string>()
   const navigate = useNavigate()
+  const { available, loading, error } = useAvailability()
   // Hook form
   const {
     register,
@@ -68,7 +72,7 @@ export const FormPage: React.FC = () => {
       })
       .catch((err) => {
         if (err.response.status === 422) {
-          setErrorResponse('A jelentkezés nem érvényes, ellenőrizd a mezőket!')
+          setErrorResponse(err.response.data.status || 'A jelentkezés nem érvényes, ellenőrizd a mezőket!')
         } else {
           setErrorResponse('Nem sikerült elküldeni az űrlapot.')
         }
@@ -77,6 +81,15 @@ export const FormPage: React.FC = () => {
         setIsLoading(false)
       })
   }
+  if (loading)
+    return (
+      <Page>
+        <Center mt={10} h="100vh">
+          <Spinner color={useColorModeValue('theme.500', 'theme.600')} size="xl" thickness="0.3rem" />
+        </Center>
+      </Page>
+    )
+  if (!available || error) return <Navigate to="/" />
   return (
     <Page>
       {/* Back button */}
@@ -91,9 +104,13 @@ export const FormPage: React.FC = () => {
         Jelentkezés a képzésre
       </Heading>
 
+      <StyledAlert w="fit-content" mx="auto" my={10}>
+        Jelentkezési határidő: február 28. 23:59
+      </StyledAlert>
+
       {/* Form body */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing={10} maxW="xl" mx="auto" mt={10} bgColor="white" p={10} boxShadow="lg" borderRadius="lg">
+        <VStack spacing={10} maxW="xl" mx="auto" bgColor="white" p={10} boxShadow="lg" borderRadius="lg">
           {/* Requirements */}
           <Text textAlign="left" width="full" my={0} fontWeight="bold">
             A jelentkezésnek több feltétele is van, amiket vállalnod kell:
@@ -196,11 +213,10 @@ export const FormPage: React.FC = () => {
               </Stack>
             </CheckboxGroup>
           </FormControl>
-          <Alert borderRadius="md">
-            <AlertIcon />
+          <StyledAlert>
             Az alkalmakról hiányozni nem lehet. Ha már most látod, hogy valamelyik alkalmon nem fogsz tudni részt venni, jelezd felénk
             megjegyzésként.
-          </Alert>
+          </StyledAlert>
           <FormControl isInvalid={!!errors.other}>
             <FormLabel htmlFor="other">Megjegyzés (opcionális)</FormLabel>
             <Textarea {...register('other')} placeholder="Egyéb kérés, óhaj, sóhaj..." resize="vertical" />

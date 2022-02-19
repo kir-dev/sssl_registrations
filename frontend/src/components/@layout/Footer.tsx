@@ -24,7 +24,7 @@ export const Footer: React.FC = () => (
               isExternal
               fontSize="xl"
               _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
-              href="https://sssl.sch.bme.hu/contact"
+              href="mailto:skepzes22@gmail.com"
             >
               Kapcsolat
             </Link>
@@ -45,15 +45,6 @@ export const Footer: React.FC = () => (
               href="https://kir-dev.sch.bme.hu"
             >
               Weboldal
-            </Link>
-            <Text>|</Text>
-            <Link
-              isExternal
-              fontSize="xl"
-              _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
-              href="https://kir-dev.sch.bme.hu"
-            >
-              Kapcsolat
             </Link>
           </HStack>
         </FooterWrapItem>
