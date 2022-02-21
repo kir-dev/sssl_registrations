@@ -46,6 +46,7 @@ import { StyledAlert } from '../@elements/StyledAlert'
 export const FormPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorResponse, setErrorResponse] = useState<string>()
+  const [userAvailabilityError, setUserAvailabilityError] = useState<string>()
   const navigate = useNavigate()
   const { available, loading, error } = useAvailability()
   // Hook form
@@ -58,6 +59,12 @@ export const FormPage: React.FC = () => {
   // Submit
   const onSubmit = (values: RegistrationForm) => {
     const { monday, tuesday, wednesday, thursday, room_number, year, ...fields } = values
+    if ([monday, tuesday, wednesday, thursday].filter((v) => v).length < 2) {
+      setUserAvailabilityError('Legalább kettő tényleg szükséges!')
+      return
+    } else {
+      setUserAvailabilityError(undefined)
+    }
     const dto: RegistrationFormDTO = {
       ...fields,
       schedule: { monday, tuesday, wednesday, thursday },
@@ -211,7 +218,13 @@ export const FormPage: React.FC = () => {
                 <Checkbox {...register('wednesday', { required: false })}>Szerda</Checkbox>
                 <Checkbox {...register('thursday', { required: false })}>Csütörtök</Checkbox>
               </Stack>
+              <FormHelperText>Legalább kettőt jelölj be!</FormHelperText>
             </CheckboxGroup>
+            {userAvailabilityError && (
+              <Text color="red" textAlign="left">
+                {userAvailabilityError}
+              </Text>
+            )}
           </FormControl>
           <StyledAlert>
             Az alkalmakról hiányozni nem lehet. Ha már most látod, hogy valamelyik alkalmon nem fogsz tudni részt venni, jelezd felénk
