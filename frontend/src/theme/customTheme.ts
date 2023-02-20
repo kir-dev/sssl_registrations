@@ -1,8 +1,8 @@
-import { extendTheme, useBreakpointValue } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
   fonts: {
-    heading: 'Limelight'
+    // heading: 'Limelight'
   },
   styles: {
     global: {
@@ -28,16 +28,16 @@ const customTheme = extendTheme({
   },
   colors: {
     theme: {
-      50: '#fee2e2',
-      100: '#fecaca',
-      200: '#fca5a5',
-      300: '#f87171',
-      400: '#ef4444',
-      500: '#dc2626',
-      600: '#b91c1c',
-      700: '#991b1b',
-      800: '#7f1d1d',
-      900: '#2f0d0d'
+      '50': '#29dfff',
+      '100': '#16dcff',
+      '200': '#07d6fb',
+      '300': '#07c6e7',
+      '400': '#06b6d4',
+      '500': '#09aac7',
+      '600': '#0c9fb9',
+      '700': '#0e94ac',
+      '800': '#0f899e',
+      '900': '#117e92'
     },
     kirDev: '#F15A29'
   }

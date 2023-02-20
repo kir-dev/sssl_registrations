@@ -32,7 +32,6 @@ import {
 } from '@chakra-ui/react'
 import { ArrowBackIcon, EmailIcon, PhoneIcon, WarningIcon } from '@chakra-ui/icons'
 import { Requirements } from '../../content/FormContent'
-import { FaVirus } from 'react-icons/fa'
 import { LinkButton } from '../@elements/LinkButton'
 import { useForm } from 'react-hook-form'
 import RegistrationFormDTO from '../../types/RegistrationFormDTO'
@@ -131,15 +130,6 @@ export const FormPage: React.FC = () => {
                 </HStack>
               </ListItem>
             ))}
-            <ListItem>
-              <HStack>
-                <ListIcon as={FaVirus} color="red.500" />
-                <Text>
-                  Vírushelyzeti korlátozások esetén a fent említett események és alkalmak online kerülnek megrendezésre. Ebben az esetben
-                  biztosítani kell a hang- és videókapcsolatot az alkalmakon.
-                </Text>
-              </HStack>
-            </ListItem>
           </List>
           {/* Fields */}
           <FormControl isInvalid={!!errors.name}>
