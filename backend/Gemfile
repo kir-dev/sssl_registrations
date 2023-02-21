@@ -33,7 +33,7 @@ gem 'rack-cors'
 # A generalized Rack framework for multiple-provider authentication. (https://github.com/omniauth/omniauth)
 gem 'omniauth'
 # Provides CSRF protection on OmniAuth request endpoint on Rails application. (https://github.com/cookpad/omniauth-rails_csrf_protection)
-gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 # An Auth.sch strategy for OmniAuth 1.x (https://github.com/kiskoza/omniauth-authsch)
 gem 'omniauth-authsch'
 

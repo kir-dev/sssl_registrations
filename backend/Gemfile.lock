@@ -275,7 +275,7 @@ DEPENDENCIES
   listen (~> 3.3)
   omniauth
   omniauth-authsch
-  omniauth-rails_csrf_protection
+  omniauth-rails_csrf_protection (~> 1.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
