@@ -30,7 +30,7 @@ export const MainPage: React.FC = () => {
         </Alert>
       )}
       <VStack justifyContent="center" mt={20} alignItems="center">
-        {available && <StyledAlert w="fit-content">Jelentkezési határidő: február 28. 23:59</StyledAlert>}
+        {available && <StyledAlert w="fit-content">Jelentkezési határidő: március 4. 23:59</StyledAlert>}
         <ApplicationButton show={available} loading={loading} />
         {!available && !loading && !error && (
           <StyledAlert status="error" w="fit-content">
