@@ -22,20 +22,6 @@ ActiveRecord::Schema.define(version: 2022_02_18_104259) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "app_data", force: :cascade do |t|
-    t.string "key"
-    t.string "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "configurations", force: :cascade do |t|
-    t.string "key"
-    t.string "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "registrations", force: :cascade do |t|
     t.string "name"
     t.string "nickname"

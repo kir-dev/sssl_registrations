@@ -35,7 +35,11 @@ gem 'omniauth'
 # Provides CSRF protection on OmniAuth request endpoint on Rails application. (https://github.com/cookpad/omniauth-rails_csrf_protection)
 gem 'omniauth-rails_csrf_protection'
 # An Auth.sch strategy for OmniAuth 1.x (https://github.com/kiskoza/omniauth-authsch)
-gem 'omniauth-authsch'
+#gem 'omniauth-authsch'
+# Temporary removed because implementation changed at AuthSCH
+
+# This gem contains a generic OAuth2 strategy for OmniAuth.
+gem 'omniauth-oauth2'
 
 # Common locale data and translations for Rails i18n. (http://github.com/svenfuchs/rails-i18n)
 gem 'rails-i18n'
