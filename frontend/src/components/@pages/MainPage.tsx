@@ -1,13 +1,11 @@
+import { Alert, AlertIcon, Heading, useBreakpointValue, VStack } from '@chakra-ui/react'
 import React from 'react'
-import { Page } from '../@layout/Page'
-import { Alert, AlertIcon, Button, Heading, useBreakpointValue, VStack } from '@chakra-ui/react'
-import { Section } from '../@elements/Section'
-import { Paragraph } from '../@elements/Paragraph'
-import { LinkButton } from '../@elements/LinkButton'
-import { Testimonials } from '../../content/Testimonials'
-import { TestimonialCard } from '../@elements/TestimonialCard'
 import { useAvailability } from '../../utils/useAvailability'
+import { LinkButton } from '../@elements/LinkButton'
+import { Paragraph } from '../@elements/Paragraph'
+import { Section } from '../@elements/Section'
 import { StyledAlert } from '../@elements/StyledAlert'
+import { Page } from '../@layout/Page'
 
 export const MainPage: React.FC = () => {
   const { available, loading, error } = useAvailability()
@@ -21,7 +19,7 @@ export const MainPage: React.FC = () => {
         portálon
       </Heading>
       <Paragraph fontSize={25} color="gray.600" textAlign="center" mt={20}>
-        Ismerd meg a képzést, olvass tapasztalatokat{available && ' és jelentkezz'}!
+        Ismerd meg a képzést{available && ' és jelentkezz'}!
       </Paragraph>
       {error && (
         <Alert status="error" mt={5} borderRadius="md">
@@ -37,9 +35,9 @@ export const MainPage: React.FC = () => {
             Jelenleg nincs jelentkezés.
           </StyledAlert>
         )}
-        <Button as="a" href="#tapasztalatok" colorScheme="theme" size="lg" variant="ghost">
-          Tapasztalatok
-        </Button>
+        {/*<Button as="a" href="#tapasztalatok" colorScheme="theme" size="lg" variant="ghost">*/}
+        {/*  Tapasztalatok*/}
+        {/*</Button>*/}
       </VStack>
       <Section title="Miért jelentkezz képzésre?">
         <Paragraph>
@@ -116,14 +114,14 @@ export const MainPage: React.FC = () => {
       <VStack justifyContent="center" marginTop={10} alignItems="center">
         <ApplicationButton show={available} loading={loading} />
       </VStack>
-      <Heading as="h2" size="2xl" id="tapasztalatok" textAlign="center">
-        Seniorok tapasztalatai
-      </Heading>
-      <VStack spacing={20} my={14}>
-        {Testimonials.map((t, index) => (
-          <TestimonialCard key={index} name={t.name} content={t.content} avatar={t.avatar} />
-        ))}
-      </VStack>
+      {/*<Heading as="h2" size="2xl" id="tapasztalatok" textAlign="center">*/}
+      {/*  Seniorok tapasztalatai*/}
+      {/*</Heading>*/}
+      {/*<VStack spacing={20} my={14}>*/}
+      {/*  {Testimonials.map((t, index) => (*/}
+      {/*    <TestimonialCard key={index} name={t.name} content={t.content} avatar={t.avatar} />*/}
+      {/*  ))}*/}
+      {/*</VStack>*/}
       <VStack justifyContent="center" alignItems="center">
         <ApplicationButton show={available} loading={loading} />
       </VStack>
