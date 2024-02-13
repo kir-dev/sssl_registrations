@@ -28,7 +28,7 @@ export const MainPage: React.FC = () => {
         </Alert>
       )}
       <VStack justifyContent="center" mt={20} alignItems="center">
-        {available && <StyledAlert w="fit-content">Jelentkezési határidő: március 4. 23:59</StyledAlert>}
+        {available && <StyledAlert w="fit-content">Jelentkezési határidő: február 24. 23:59</StyledAlert>}
         <ApplicationButton show={available} loading={loading} />
         {!available && !loading && !error && (
           <StyledAlert status="error" w="fit-content">
@@ -122,9 +122,9 @@ export const MainPage: React.FC = () => {
       {/*    <TestimonialCard key={index} name={t.name} content={t.content} avatar={t.avatar} />*/}
       {/*  ))}*/}
       {/*</VStack>*/}
-      <VStack justifyContent="center" alignItems="center">
-        <ApplicationButton show={available} loading={loading} />
-      </VStack>
+      {/*<VStack justifyContent="center" alignItems="center">*/}
+      {/*  <ApplicationButton show={available} loading={loading} />*/}
+      {/*</VStack>*/}
     </Page>
   )
 }
