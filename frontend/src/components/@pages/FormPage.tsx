@@ -111,7 +111,7 @@ export const FormPage: React.FC = () => {
       </Heading>
 
       <StyledAlert w="fit-content" mx="auto" my={10}>
-        Jelentkezési határidő: február 28. 23:59
+        Jelentkezési határidő: február 24. 23:59
       </StyledAlert>
 
       {/* Form body */}
